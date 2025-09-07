@@ -26,9 +26,29 @@ npm run dev
 - Responsive design
 
 ## Folder Structure
-- `src/` - Frontend source code
-- `public/` - Static assets (favicon, images)
-- `Backend/` - Backend API and data
+```
+scale-craft-front/
+  public/
+    favicon.ico
+    placeholder.svg
+    robots.txt
+  src/
+    assets/
+    components/
+    data/
+    hooks/
+    lib/
+    pages/
+    types/
+    App.tsx
+    main.tsx
+    index.css
+    ...
+  index.html
+  package.json
+  README.md
+  ...
+```
 
 ## Customization
 - Change favicon: Replace `public/favicon.ico` with your own icon
