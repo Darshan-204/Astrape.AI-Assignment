@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "name": "Premium Wireless Headphones",
+    "description": "High-quality wireless headphones with noise cancellation and 30-hour battery life.",
+    "price": 299.99,
+    "originalPrice": 399.99,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
+    "category": "electronics",
+    "inStock": true,
+    "featured": true,
+    "rating": 4.8,
+    "reviewCount": 324
+  },
+  {
+    "id": "2",
+    "name": "Smart Fitness Watch",
+    "description": "Track your health and fitness with this advanced smartwatch featuring GPS and heart rate monitoring.",
+    "price": 249.99,
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
+    "category": "electronics",
+    "inStock": true,
+    "featured": true,
+    "rating": 4.6,
+    "reviewCount": 189
+  }
+]
