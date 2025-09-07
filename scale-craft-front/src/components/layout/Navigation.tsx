@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { useCart } from '@/hooks/useCart';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Navigation = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,7 +32,9 @@ export const Navigation = () => {
       // Optionally handle error
     }
     localStorage.removeItem('token');
-    window.location.href = '/login';
+    // Use useNavigate for navigation instead of window.location.href
+    const navigate = useNavigate();
+    navigate('/login');
   };
 
   const isActive = (path: string) => location.pathname === path;
