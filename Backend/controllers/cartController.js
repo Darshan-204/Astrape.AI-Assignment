@@ -1,3 +1,16 @@
+// Clear all items from cart
+exports.clearCart = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const cart = await Cart.findOne({ user: userId });
+    if (!cart) return res.json({ success: false, message: 'Cart not found' });
+    cart.items = [];
+    await cart.save();
+    res.json({ success: true, cart });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
 const Cart = require('../model/Cart');
 
 // Add product to cart (frontend sends productId and quantity)

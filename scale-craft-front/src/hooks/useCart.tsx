@@ -200,6 +200,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       title: "Cart cleared",
       description: "All items have been removed from your cart.",
     });
+    // Sync with backend
+    const backendUrl = process.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch(`${backendUrl}/api/cart/clear`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+    }
   };
 
   return (

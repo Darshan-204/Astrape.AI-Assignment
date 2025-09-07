@@ -25,6 +25,7 @@ router.post('/cart/add', authtoken, cartController.addToCart);
 router.get('/cart', authtoken, cartController.getCart);
 router.post('/cart/remove', authtoken, cartController.removeFromCart);
 router.post('/cart/update', authtoken, cartController.updateCartQuantity);
+router.post('/cart/clear', authtoken, cartController.clearCart);
 
 // Search endpoint
 // router.get('/search', searchProducts);
