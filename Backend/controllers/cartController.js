@@ -2,12 +2,16 @@
 exports.clearCart = async (req, res) => {
   try {
     const userId = req.user._id;
+    console.log('[clearCart] userId:', userId);
     const cart = await Cart.findOne({ user: userId });
+    console.log('[clearCart] cart before:', cart);
     if (!cart) return res.json({ success: false, message: 'Cart not found' });
     cart.items = [];
     await cart.save();
+    console.log('[clearCart] cart after:', cart);
     res.json({ success: true, cart });
   } catch (err) {
+    console.error('[clearCart] error:', err);
     res.status(500).json({ success: false, error: err.message });
   }
 };
