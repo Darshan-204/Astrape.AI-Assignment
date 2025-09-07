@@ -100,7 +100,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // Fetch cart from backend on mount and on login event
   React.useEffect(() => {
     const fetchCart = async () => {
-    const backendUrl = (import.meta.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app').replace(/\/$/, '');
+  const backendUrl = process.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
       const token = localStorage.getItem('token');
       if (!token) return;
       try {
@@ -139,7 +139,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       description: `${product.name} has been added to your cart.`,
     });
     // Sync with backend
-  const backendUrl = (import.meta.env.VITE_BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app').replace(/\/$/, '');
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app/';
     const token = localStorage.getItem('token');
     if (token) {
       fetch(`${backendUrl}/api/cart/add`, {
@@ -161,7 +161,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       description: "Item has been removed from your cart.",
     });
     // Sync with backend
-  const backendUrl = (import.meta.env.VITE_BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app').replace(/\/$/, '');
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app/';
     const token = localStorage.getItem('token');
     if (token) {
       fetch(`${backendUrl}/api/cart/remove`, {
@@ -179,7 +179,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const updateQuantity = (id: string, quantity: number) => {
     dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
     // Sync with backend
-  const backendUrl = (import.meta.env.VITE_BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app').replace(/\/$/, '');
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app/';
     const token = localStorage.getItem('token');
     if (token) {
       fetch(`${backendUrl}/api/cart/update`, {
