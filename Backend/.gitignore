@@ -6,8 +6,6 @@ node_modules/
 /build
 
 # Environment variables
-.env
-.env.local
 
 # Logs
 npm-debug.log*
