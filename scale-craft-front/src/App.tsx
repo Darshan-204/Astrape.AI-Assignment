@@ -24,7 +24,7 @@ const App = () => (
   <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routes>
             <Route path="/search" element={<SearchResults />} />
-            <Route path="/" element={<PrivateRoute><Index /></PrivateRoute>} />
+            <Route path="/" element={<Index />} />
             <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
