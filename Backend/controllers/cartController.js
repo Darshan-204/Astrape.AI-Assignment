@@ -55,14 +55,16 @@ exports.updateCartQuantity = async (req, res) => {
   try {
     const userId = req.user._id;
     const { productId, quantity } = req.body;
-    if (quantity <= 0) {
-      return res.status(400).json({ success: false, message: 'Quantity must be greater than 0' });
-    }
     const cart = await Cart.findOne({ user: userId });
     if (!cart) return res.json({ success: false, message: 'Cart not found' });
     const itemIndex = cart.items.findIndex(item => item.productId === productId);
     if (itemIndex > -1) {
-      cart.items[itemIndex].quantity = quantity;
+      if (quantity <= 0) {
+        // Remove item if quantity is zero or less
+        cart.items.splice(itemIndex, 1);
+      } else {
+        cart.items[itemIndex].quantity = quantity;
+      }
       await cart.save();
       res.json({ success: true, cart });
     } else {

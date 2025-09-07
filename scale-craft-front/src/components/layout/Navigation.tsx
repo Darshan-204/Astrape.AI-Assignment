@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, User, Search, Menu } from 'lucide-react';
+import { decodeJWT } from '@/lib/jwt';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -16,7 +17,9 @@ export const Navigation = () => {
   const { itemCount } = useCart();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLoggedIn = Boolean(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
+  const isLoggedIn = Boolean(token);
+  const user = token ? decodeJWT(token) : null;
   const handleLogout = async () => {
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
@@ -98,9 +101,14 @@ export const Navigation = () => {
         {/* Actions */}
         <div className="flex items-center space-x-4">
           {isLoggedIn ? (
-            <Button variant="outline" onClick={handleLogout}>
-              Logout
-            </Button>
+            <>
+              {user?.name && (
+                <span className="font-medium text-sm text-muted-foreground mr-2">{user.name}</span>
+              )}
+              <Button variant="outline" onClick={handleLogout}>
+                Logout
+              </Button>
+            </>
           ) : (
             <Link to="/login">
               <Button variant="ghost" size="icon">
@@ -108,7 +116,6 @@ export const Navigation = () => {
               </Button>
             </Link>
           )}
-          
           <Link to="/cart" className="relative">
             <Button variant="ghost" size="icon">
               <ShoppingCart className="h-5 w-5" />
@@ -122,7 +129,6 @@ export const Navigation = () => {
               )}
             </Button>
           </Link>
-
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"

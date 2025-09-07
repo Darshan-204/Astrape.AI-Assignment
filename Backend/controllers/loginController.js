@@ -27,11 +27,11 @@ async function loginController(req,res)
         throw new Error("Password is incoorect");
     }
 
-const tokenData=
-{
-     _id:user._id,
-    email:user.email
-}
+const tokenData = {
+    _id: user._id,
+    email: user.email,
+    name: user.name // Include name in JWT payload
+};
 
 const token=await jwt.sign(tokenData,process.env.TOKEN_SECRET_KEY, { expiresIn: '7d' });
 
