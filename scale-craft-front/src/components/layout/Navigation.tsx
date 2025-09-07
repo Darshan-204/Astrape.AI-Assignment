@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { useCart } from '@/hooks/useCart';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from '@/components/ui/use-toast';
 
 export const Navigation = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,9 +22,10 @@ export const Navigation = () => {
   const token = localStorage.getItem('token');
   const isLoggedIn = Boolean(token);
   const user = token ? decodeJWT(token) : null;
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-  const backendUrl = process.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
+      const backendUrl = process.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
       await fetch(`${backendUrl}/api/logout`, {
         method: 'POST',
         credentials: 'include',
@@ -32,8 +34,11 @@ export const Navigation = () => {
       // Optionally handle error
     }
     localStorage.removeItem('token');
-    // Use useNavigate for navigation instead of window.location.href
-    const navigate = useNavigate();
+    toast({
+      title: 'Logged out!',
+      description: 'Please login again.',
+      variant: 'default',
+    });
     navigate('/login');
   };
 
