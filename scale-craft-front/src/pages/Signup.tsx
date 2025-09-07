@@ -46,7 +46,7 @@ export default function Signup() {
 
     setIsLoading(true);
     try {
-      const backendUrl = import.meta.env.BACKEND_URL || 'http://localhost:8080';
+  const backendUrl = import.meta.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
       const summary = {
         register: {
           method: 'POST',

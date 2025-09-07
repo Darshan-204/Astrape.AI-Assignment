@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
+  const backendUrl = import.meta.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
       const summary = {
         login: {
           method: 'POST',

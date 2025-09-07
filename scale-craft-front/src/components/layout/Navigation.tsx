@@ -22,7 +22,7 @@ export const Navigation = () => {
   const user = token ? decodeJWT(token) : null;
   const handleLogout = async () => {
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
+  const backendUrl = import.meta.env.BACKEND_URL || 'https://astrape-ai-assignment-9btq.vercel.app';
       await fetch(`${backendUrl}/api/logout`, {
         method: 'POST',
         credentials: 'include',
